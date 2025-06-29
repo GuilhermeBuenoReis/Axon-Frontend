@@ -1,16 +1,19 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
+import './globals.css';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/http/client';
 
 const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-poppins",
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-poppins',
 });
 
 export const metadata: Metadata = {
-  title: "Axon | Gerencie sua vida com inteligência",
-  description: "Organize tarefas, rotinas e sua produtividade com clareza e foco usando o Axon.",
+  title: 'Axon | Gerencie sua vida com inteligência',
+  description:
+    'Organize tarefas, rotinas e sua produtividade com clareza e foco usando o Axon.',
 };
 
 export default function RootLayout({
@@ -20,9 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${poppins.variable} font-sans antialiased bg-background text-foreground`}>
-        {children}
-      </body>
+      <QueryClientProvider client={queryClient}>
+        <body
+          className={`${poppins.variable} font-sans antialiased bg-background text-foreground`}
+        >
+          {children}
+        </body>
+      </QueryClientProvider>
     </html>
   );
 }
