@@ -3,19 +3,17 @@
  * Do not edit manually.
  */
 
-import { z } from 'zod';
+import { z } from 'zod'
 
 /**
  * @description Default Response
  */
-export const createUser201Schema = z.any();
+export const createUser201Schema = z.any()
 
 export const createUserMutationRequestSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   password: z.string(),
-});
+})
 
-export const createUserMutationResponseSchema = z.lazy(
-  () => createUser201Schema
-);
+export const createUserMutationResponseSchema = z.lazy(() => createUser201Schema)

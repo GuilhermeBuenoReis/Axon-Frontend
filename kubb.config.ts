@@ -3,6 +3,7 @@ import { pluginOas } from '@kubb/plugin-oas';
 import { pluginTs } from '@kubb/plugin-ts';
 import { pluginZod } from '@kubb/plugin-zod';
 import { pluginReactQuery } from '@kubb/plugin-react-query';
+import { env } from './src/env';
 
 export default defineConfig({
   input: {
@@ -27,6 +28,7 @@ export default defineConfig({
       },
       client: {
         dataReturnType: 'full',
+        baseURL: 'http://localhost:3333',
       },
 
       query: {

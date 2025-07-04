@@ -3,17 +3,15 @@
  * Do not edit manually.
  */
 
-import { z } from 'zod';
+import { z } from 'zod'
 
 /**
  * @description Default Response
  */
-export const sendMagicLink204Schema = z.any();
+export const sendMagicLink204Schema = z.any()
 
 export const sendMagicLinkMutationRequestSchema = z.object({
   email: z.string().email(),
-});
+})
 
-export const sendMagicLinkMutationResponseSchema = z.lazy(
-  () => sendMagicLink204Schema
-);
+export const sendMagicLinkMutationResponseSchema = z.lazy(() => sendMagicLink204Schema)

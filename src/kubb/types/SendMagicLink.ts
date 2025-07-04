@@ -6,19 +6,19 @@
 /**
  * @description Default Response
  */
-export type SendMagicLink204 = any;
+export type SendMagicLink204 = any
 
 export type SendMagicLinkMutationRequest = {
   /**
    * @type string, email
    */
-  email: string;
-};
+  email: string
+}
 
-export type SendMagicLinkMutationResponse = SendMagicLink204;
+export type SendMagicLinkMutationResponse = SendMagicLink204
 
 export type SendMagicLinkMutation = {
-  Response: SendMagicLink204;
-  Request: SendMagicLinkMutationRequest;
-  Errors: any;
-};
+  Response: SendMagicLink204
+  Request: SendMagicLinkMutationRequest
+  Errors: any
+}

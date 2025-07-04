@@ -3,25 +3,15 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import type {
-  SendMagicLinkMutationRequest,
-  SendMagicLinkMutationResponse,
-} from '../../../../types/SendMagicLink.ts';
-import { useMutation } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import type { SendMagicLinkMutationRequest, SendMagicLinkMutationResponse } from '../../../../types/SendMagicLink.ts'
+import { useMutation } from '@tanstack/react-query'
 
-export const sendMagicLinkMutationKey = () =>
-  [{ url: '/api/auth/magic-link' }] as const;
+export const sendMagicLinkMutationKey = () => [{ url: '/api/auth/magic-link' }] as const
 
-export type SendMagicLinkMutationKey = ReturnType<
-  typeof sendMagicLinkMutationKey
->;
+export type SendMagicLinkMutationKey = ReturnType<typeof sendMagicLinkMutationKey>
 
 /**
  * @description Envia um link mágico por email para login
@@ -29,23 +19,18 @@ export type SendMagicLinkMutationKey = ReturnType<
  */
 export async function sendMagicLink(
   data: SendMagicLinkMutationRequest,
-  config: Partial<RequestConfig<SendMagicLinkMutationRequest>> & {
-    client?: typeof client;
-  } = {}
+  config: Partial<RequestConfig<SendMagicLinkMutationRequest>> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    SendMagicLinkMutationResponse,
-    ResponseErrorConfig<Error>,
-    SendMagicLinkMutationRequest
-  >({
+  const res = await request<SendMagicLinkMutationResponse, ResponseErrorConfig<Error>, SendMagicLinkMutationRequest>({
     method: 'POST',
     url: `/api/auth/magic-link`,
+    baseURL: 'http://localhost:3333',
     data,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -59,29 +44,22 @@ export function useSendMagicLink<TContext>(
       ResponseErrorConfig<Error>,
       { data: SendMagicLinkMutationRequest },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig<SendMagicLinkMutationRequest>> & {
-      client?: typeof client;
-    };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig<SendMagicLinkMutationRequest>> & { client?: typeof client }
+  } = {},
 ) {
-  const { mutation = {}, client: config = {} } = options ?? {};
-  const { client: queryClient, ...mutationOptions } = mutation;
-  const mutationKey = mutationOptions.mutationKey ?? sendMagicLinkMutationKey();
+  const { mutation = {}, client: config = {} } = options ?? {}
+  const { client: queryClient, ...mutationOptions } = mutation
+  const mutationKey = mutationOptions.mutationKey ?? sendMagicLinkMutationKey()
 
-  return useMutation<
-    ResponseConfig<SendMagicLinkMutationResponse>,
-    ResponseErrorConfig<Error>,
-    { data: SendMagicLinkMutationRequest },
-    TContext
-  >(
+  return useMutation<ResponseConfig<SendMagicLinkMutationResponse>, ResponseErrorConfig<Error>, { data: SendMagicLinkMutationRequest }, TContext>(
     {
       mutationFn: async ({ data }) => {
-        return sendMagicLink(data, config);
+        return sendMagicLink(data, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from '@/http/client';
+import { Providers } from '@/providers/provider';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -23,13 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <QueryClientProvider client={queryClient}>
-        <body
-          className={`${poppins.variable} font-sans antialiased bg-background text-foreground`}
-        >
-          {children}
-        </body>
-      </QueryClientProvider>
+      <body
+        className={`${poppins.variable} font-sans antialiased text-foreground`}
+      >
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

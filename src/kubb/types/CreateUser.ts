@@ -6,27 +6,27 @@
 /**
  * @description Default Response
  */
-export type CreateUser201 = any;
+export type CreateUser201 = any
 
 export type CreateUserMutationRequest = {
   /**
    * @type string
    */
-  name: string;
+  name: string
   /**
    * @type string, email
    */
-  email: string;
+  email: string
   /**
    * @type string
    */
-  password: string;
-};
+  password: string
+}
 
-export type CreateUserMutationResponse = CreateUser201;
+export type CreateUserMutationResponse = CreateUser201
 
 export type CreateUserMutation = {
-  Response: CreateUser201;
-  Request: CreateUserMutationRequest;
-  Errors: any;
-};
+  Response: CreateUser201
+  Request: CreateUserMutationRequest
+  Errors: any
+}
