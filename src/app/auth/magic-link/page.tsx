@@ -11,6 +11,7 @@ export default function MagicLinkPage() {
   const token = searchParams.get('token');
 
   useEffect(() => {
+    console.log('renderizou');
     if (!token) {
       router.replace('/login');
       return;
